@@ -1,0 +1,112 @@
+---
+layout: post
+title:  "git-svn"
+date:   2015-11-21 20:51:18 -0600
+categories: SCM
+---
+Over the last day or so I have been looking into the git-svn tool.  It sounds like a tool that will be very helpful for me at work.  My work currently uses a subversion repository and I am very close to being converted from a Subversion fan to a git fan.
+
+I am going to try to use this post as an attempt document my learning of the new tool in hopes that it helps others learn about what a great tool this could be.
+
+Starting out!  Lets create a subversion repository to test with. (You can skip this step if you have a Subversion repository you are currently using)
+
+{% highlight bash %}
+svnadmin create svnrepo
+{% endhighlight %}
+
+After creating the repository lets procede to set it up as described in the [svnbook].
+
+{% highlight bash %}
+svn co file:///path/to/svnrepo svncopy
+cd svncopy
+mkdir trunk
+mkdir tags
+mkdir branches
+echo "Hello World" > trunk/README
+svn add trunk tags branches
+svn ci -m "Adding repository structure"
+{% endhighlight %}
+
+Now to start using git-svn!  Lets clone the subversion repository.
+
+{% highlight bash %}
+cd ..
+git svn clone -s file:///path/to/svnrepo gitcopy
+{% endhighlight %}
+
+If your repository is large, you can choose to use the -r argument to pick a more recent version to clone from (ex. -r 1000:HEAD).
+
+Notice that when cloning only the trunk is pulled down - this is slightly differnt than the checkout command with Subversion.
+
+Lets experiment with how commits and updates are handled.
+
+There are two ways to look at history the following will give you a log close to Subversion.
+
+{% highlight bash %}
+cd gitcopy
+git svn log
+{% endhighlight %}
+
+Where as this command will give you the git log.
+{% highlight bash %}
+git log
+{% endhighlight %}
+
+Lets go into the svncopy modify the README and commit it.
+{% highlight bash %}
+cd ../svncopy
+echo "Hello Again" > trunk/README
+svn ci -m "Adding more to Readme."
+{% endhighlight %}
+
+Now lets grab the changes (subversion update) in the git svn copy
+{% highlight bash %}
+cd ../gitcopy
+git svn rebase
+{% endhighlight %}
+
+We know have the changes from the svncopy in the gitcopy.
+
+Since gits workflow is inheriently different than subversion, commiting from the gitcopy to svnrepo takes a few more steps.
+
+{% highlight bash %}
+cd ../gitcopy
+echo "Hello from git" > README
+git commit -a -m "More information to README"
+echo "Hello from git svn" > README
+git commit -a -m "Fixed message in readme"
+git svn dcommit
+{% endhighlight %}
+
+The log on the subversion side looks as follows:
+
+{% highlight bash %}
+svn up
+Updating '.':
+U    trunk/README
+Updated to revision 4.
+svn log
+------------------------------------------------------------------------
+r4 | me | 2015-11-22 11:55:12 -0600 (Sun, 22 Nov 2015) | 1 line
+
+Fixed message in readme
+------------------------------------------------------------------------
+r3 | me | 2015-11-22 11:55:12 -0600 (Sun, 22 Nov 2015) | 1 line
+
+More information to README
+------------------------------------------------------------------------
+r2 | me | 2015-11-22 11:24:37 -0600 (Sun, 22 Nov 2015) | 1 line
+
+Adding more to README
+------------------------------------------------------------------------
+r1 | me | 2015-11-22 11:09:01 -0600 (Sun, 22 Nov 2015) | 1 line
+
+Adding repository structure
+------------------------------------------------------------------------
+{% endhighlight %}
+
+So, it looks like it pushes each git commit as a svn commit when using the dcommit command.  I probably should have used different usernames from both git and svn.
+
+Branching turned out to be a lot more tricky than I anticipated, so that will have to wait until next time.
+
+[svnbook]: http://svnbook.red-bean.com/en/1.2/svn.branchmerge.maint.html 
