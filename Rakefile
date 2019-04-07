@@ -58,7 +58,7 @@ namespace :strava do
     require 'strava-ruby-client'
 
     require './_lib/strava'
-    require './_lib/map'
+    #require './_lib/map'
     require './_lib/activity'
 
     require 'fileutils'
@@ -112,7 +112,7 @@ strava: true
           file.write "\n|#{activity.distance_in_miles_s}|#{activity.moving_time_in_hours_s}|#{activity.pace_per_mile_s}|\n"
 
           file.write "\n#{activity.description}\n" if activity.description && !activity.description.empty?
-          file.write "\n<img src='#{activity.map.image_url}'>\n" if activity.map && activity.map.image_url
+          #file.write "\n<img src='#{activity.map.image_url}'>\n" if activity.map && activity.map.image_url
 
           if activity.splits_standard && activity.splits_standard.any?
             file.write "\n### Splits\n"
