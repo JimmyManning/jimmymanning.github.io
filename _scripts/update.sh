@@ -2,8 +2,6 @@
 
 set -e
 set -o pipefail
-
-bundle exec rake nyrr:results:update
 bundle exec rake strava:update
 bundle exec rake tags
 
@@ -16,7 +14,7 @@ then
 fi
 
 git config --global user.name "Run Buildbot"
-git config --global user.email "dblock+run@dblock.org"
+git config --global user.email "JimmyManning@gmail.com"
 git add .
 if ! git diff --quiet --staged
   then
