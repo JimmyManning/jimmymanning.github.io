@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+order: 4
 ---
 
 ![Me]({{ site.url }}/assets/Jimmy.jpg)
