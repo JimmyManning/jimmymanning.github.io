@@ -21,7 +21,7 @@ markdown: kramdown
 collections:
   beer:
     output: true
-  coding:
+  code:
     output: true
   running:
     output: true
