@@ -4,7 +4,7 @@ title:  "iSpindel Calibration"
 date:   2022-10-23 8:39:18 -0600
 categories: jekyll update
 ---
-[iSpindel](http://ispindel.de) is an IoT based hydrometer for monitoring fermentation. I will likely create a post later on tips for building and source code modifications. The focus here is to capture some wonderful tools that make the calibration process a little easier. The focus of this post is going to be calibration, so let's get started.
+[iSpindel](http://ispindel.de) is an IoT based hydrometer for monitoring fermentation. I will likely create a post later on tips for building and source code modifications. The focus here is to capture some wonderful tools that make the calibration process a little easier,  so let's get started.
 
 Things you'll need
 * Large bucket
