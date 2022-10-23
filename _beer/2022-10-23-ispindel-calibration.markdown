@@ -24,5 +24,5 @@ Before starting make sure the iSpindel's tilt is ~25 degrees in water, if it's g
 7. Add the amount of water per the calculator and measure the SG with a hydrometer or refractometer. 
 8. Repeat steps 5, 6, and 7 until 1.000 is reached.
 9. Using this [calculator](https://www.ispindel.de/tools/calibration/calibration.htm) enter all recorded gravity and tilt values.
-10. Put the iSpindel into config mode (pushing the reset button twice). Connect to it's wifi and enter the outputted equation into the equation field on the configuration screen. Save the configuration and the iSpindel will restart.
+10. Put the iSpindel into config mode, pushing the reset button twice. Connect to it's wifi and enter the outputted equation into the equation field on the configuration screen. Save the configuration and the iSpindel will restart.
 11. After entering the equation into the iSpindel's configuration, I usually put it back into configuraton mode and monitor the info page while putting the iSpindel in some of the saved discarded known gravity buckets. If you're happy with the results, the iSpindel is ready to be connected to your desiered monitoring software, sanatized, and put into fermenting wort.
