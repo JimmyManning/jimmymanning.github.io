@@ -18,3 +18,10 @@ linkedin_username: james-manning-a8b6585
 instagram_username: jimmyjmanning
 # Build settings
 markdown: kramdown
+collections:
+  beer:
+    output: true
+  coding:
+    output: true
+  running:
+    output: true
